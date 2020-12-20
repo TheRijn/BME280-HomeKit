@@ -1,6 +1,6 @@
-author: 'Deomid "rojer" Ryabkov'
-description: A demo HomeKit app for MOngoose OS
-version: 1.0.0
+author: Marijn Doeve <marijn@doeve.me>
+description: A Climate Sensor app
+version: 0.0.1
 
 libs_version: ${mos.version}
 modules_version: ${mos.version}
@@ -9,6 +9,7 @@ mongoose_os_version: ${mos.version}
 tags:
   - c
   - homekit
+  - bme-280
 
 sources:
   - src
@@ -21,26 +22,36 @@ cdefs:
   BLE: 0  # Not supported yet
   # This saves quite a bit of space but disables all HAP debug output.
   # HAP_LOG_LEVEL: 0
-  HAP_PRODUCT_NAME: '"Acme Light Bulb 9000"'
-  HAP_PRODUCT_VENDOR: '"Acme"'
-  HAP_PRODUCT_MODEL: '"LB9K"'
+  HAP_PRODUCT_NAME: '"Climate Sensor"'
+  HAP_PRODUCT_VENDOR: '"Marijn Doeve"'
+  HAP_PRODUCT_MODEL: '"ESP32 BME280"'
   HAP_PRODUCT_HW_REV: '"1.0"'
-  HAP_SERVICE_NAME: '"Light Bulb"'
+  HAP_SERVICE_NAME: '"Climate Sensor"'
 
 config_schema:
+  # I2C
+  - ["i2c.enable", true]
+  - ["i2c.scl_gpio", 22]
+  - ["i2c.sda_gpio", 23]
+  - ["i2c1.sda_gpio", 32]
+  - ["i2c1.scl_gpio", 33]
   # Serial number. This can be later set in the field but HomeKit requires at least 2 bytes.
   - ["device.sn", "000000"]
-  - ["lightbulb.name", "s", "Light Bulb", {"title": "Accessory name (unless renamed by the user)"}]
-  - ["device.sn", "000000"]
+  - ["temperaturesensor.name", "s", "Temperature", {"title": "TempSensor name"}]
+  - ["humiditysensor.name", "s", "Humidity", {"title": "HumSensor name"}]
+
 
 build_vars:
   # Enables storing setup info in the config and a simple RPC service to configure it.
   MGOS_HAP_SIMPLE_CONFIG: 1
+  ADAFRUIT_HUZZAH32: 1
 
 libs:
   - origin: https://github.com/mongoose-os-libs/homekit-adk
   - origin: https://github.com/mongoose-os-libs/rpc-service-config
   - origin: https://github.com/mongoose-os-libs/rpc-uart
+  - origin: https://github.com/mongoose-os-libs/bme280
+
 
 conds:
   - when: mos.platform == "esp32"
@@ -53,4 +64,4 @@ conds:
       libs:
         - origin: https://github.com/mongoose-os-libs/wifi
 
-manifest_version: 2017-05-18
+manifest_version: 2020-08-02

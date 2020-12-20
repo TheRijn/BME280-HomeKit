@@ -23,6 +23,21 @@ extern "C" {
 #pragma clang assume_nonnull begin
 #endif
 
+
+HAP_RESULT_USE_CHECK
+HAPError HandleTemperatureSensorRead(
+        HAPAccessoryServerRef *server HAP_UNUSED,
+        const HAPFloatCharacteristicReadRequest *request HAP_UNUSED,
+        float *value,
+        void *_Nullable context HAP_UNUSED);
+
+HAP_RESULT_USE_CHECK
+HAPError HandleHumiditySensorRead(
+        HAPAccessoryServerRef *server HAP_UNUSED,
+        const HAPFloatCharacteristicReadRequest *request HAP_UNUSED,
+        float *value,
+        void *_Nullable context HAP_UNUSED);
+
 /**
  * Identify routine. Used to locate the accessory.
  */
@@ -31,22 +46,6 @@ HAPError IdentifyAccessory(HAPAccessoryServerRef *server,
                            const HAPAccessoryIdentifyRequest *request,
                            void *_Nullable context);
 
-/**
- * Handle read request to the 'On' characteristic of the Light Bulb service.
- */
-HAP_RESULT_USE_CHECK
-HAPError HandleLightBulbOnRead(HAPAccessoryServerRef *server,
-                               const HAPBoolCharacteristicReadRequest *request,
-                               bool *value, void *_Nullable context);
-
-/**
- * Handle write request to the 'On' characteristic of the Light Bulb service.
- */
-HAP_RESULT_USE_CHECK
-HAPError HandleLightBulbOnWrite(
-    HAPAccessoryServerRef *server,
-    const HAPBoolCharacteristicWriteRequest *request, bool value,
-    void *_Nullable context);
 
 /**
  * Initialize the application.

@@ -23,12 +23,13 @@ extern "C" {
 /**
  * Total number of services and characteristics contained in the accessory.
  */
-#define kAttributeCount ((size_t) 21)
+// #define kAttributeCount ((size_t) 20)
 
 /**
- * Light Bulb service.
+ * Temperature Sensor service.
  */
-extern HAPService lightBulbService;
+extern HAPService temperatureSensorService;
+extern HAPService humiditySensorService;
 
 #if __has_feature(nullability)
 #pragma clang assume_nonnull end

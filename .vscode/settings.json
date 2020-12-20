@@ -1,0 +1,7 @@
+{
+    "mos.port": "/dev/cu.UEMarijn-LWACP",
+    "mos.board": "ESP32",
+    "cSpell.words": [
+        "mgos"
+    ]
+}

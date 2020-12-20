@@ -135,7 +135,7 @@ static void InitializePlatform() {
 
   platform.hapAccessoryServerCallbacks.handleUpdatedState = HandleUpdatedState;
 
-  mgos_set_timer(1000, MGOS_TIMER_REPEAT, timer_cb, NULL);
+  // mgos_set_timer(1000, MGOS_TIMER_REPEAT, timer_cb, NULL);
 }
 
 /**
