@@ -175,7 +175,6 @@ HAPError HandleTemperatureSensorRead(
     void *_Nullable context HAP_UNUSED
 ) {
 
-    struct mgos_bme280 *sensor = mgos_bme280_i2c_create(0x76);
     *value = mgos_bme280_read_temperature(bme);
 
     HAPLogInfo(&kHAPLog_Default, "%s: %f", __func__, *value);
@@ -279,4 +278,5 @@ void AppInitialize(
 
 void AppDeinitialize() {
   /*no-op*/
+  mgos_bme280_delete(bme);
 }

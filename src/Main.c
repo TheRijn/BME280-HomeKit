@@ -23,6 +23,7 @@
 
 #include "mgos.h"
 #include "mgos_hap.h"
+#include "mgos_rpc_service_ota.h"
 
 static bool requestedFactoryReset = false;
 static bool clearPairings = false;
@@ -275,6 +276,7 @@ enum mgos_app_init_result mgos_app_init(void) {
 
 #if IP
   InitializeIP();
+  mgos_rpc_service_ota_init();
 #endif
 
 #if BLE
@@ -302,8 +304,8 @@ enum mgos_app_init_result mgos_app_init(void) {
     LOG(LL_INFO, ("=== Accessory is not provisioned"));
   }
 
-  mgos_hap_add_rpc_service(&accessoryServer, AppGetAccessoryInfo(),
-                           &platform.keyValueStore);
+  mgos_hap_add_rpc_service(&accessoryServer, AppGetAccessoryInfo());
+
 
   return MGOS_APP_INIT_SUCCESS;
 }

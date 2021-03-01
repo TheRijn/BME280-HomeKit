@@ -1,6 +1,6 @@
 author: Marijn Doeve <marijn@doeve.me>
 description: A Climate Sensor app
-version: 0.0.1
+version: "0.0.2-2"
 
 libs_version: ${mos.version}
 modules_version: ${mos.version}
@@ -49,8 +49,13 @@ build_vars:
 libs:
   - origin: https://github.com/mongoose-os-libs/homekit-adk
   - origin: https://github.com/mongoose-os-libs/rpc-service-config
+  - origin: https://github.com/mongoose-os-libs/rpc-service-ota
   - origin: https://github.com/mongoose-os-libs/rpc-uart
+  - origin: https://github.com/mongoose-os-libs/rpc-ws
   - origin: https://github.com/mongoose-os-libs/bme280
+  - origin: https://github.com/mongoose-os-libs/ota-http-server
+  - origin: https://github.com/mongoose-os-libs/wifi-setup-web-ui
+  # - origin: https://github.com/mongoose-os-libs/dash
 
 
 conds:
