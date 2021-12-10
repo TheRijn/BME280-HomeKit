@@ -75,15 +75,15 @@ extern void AppAccessoryServerStart(void);
 extern void AccessoryServerHandleUpdatedState(HAPAccessoryServerRef *server,
                                               void *_Nullable context);
 
-static void timer_cb(void *arg) {
-  static bool s_tick_tock = false;
-  LOG(LL_INFO,
-      ("%s uptime: %.2lf, RAM: %lu, %lu free", (s_tick_tock ? "Tick" : "Tock"),
-       mgos_uptime(), (unsigned long) mgos_get_heap_size(),
-       (unsigned long) mgos_get_free_heap_size()));
-  s_tick_tock = !s_tick_tock;
-  (void) arg;
-}
+// static void timer_cb(void *arg) {
+//   static bool s_tick_tock = false;
+//   LOG(LL_INFO,
+//       ("%s uptime: %.2lf, RAM: %lu, %lu free", (s_tick_tock ? "Tick" : "Tock"),
+//        mgos_uptime(), (unsigned long) mgos_get_heap_size(),
+//        (unsigned long) mgos_get_free_heap_size()));
+//   s_tick_tock = !s_tick_tock;
+//   (void) arg;
+// }
 
 /**
  * Initialize global platform objects.

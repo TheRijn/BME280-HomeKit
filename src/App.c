@@ -35,7 +35,7 @@
 #include "mgos_hap.h"
 
 #include "mgos_bme280.h"
-
+#include "mgos_gpio.h"
 
 void AccessoryNotification(const HAPAccessory *accessory,
                            const HAPService *service,
@@ -115,20 +115,20 @@ static void LoadAccessoryState(void) {
 /**
  * Save the accessory state to persistent memory.
  */
-static void SaveAccessoryState(void) {
-  HAPPrecondition(accessoryConfiguration.keyValueStore);
+// static void SaveAccessoryState(void) {
+//   HAPPrecondition(accessoryConfiguration.keyValueStore);
 
-  HAPError err;
-  err = HAPPlatformKeyValueStoreSet(accessoryConfiguration.keyValueStore,
-                                    kAppKeyValueStoreDomain_Configuration,
-                                    kAppKeyValueStoreKey_Configuration_State,
-                                    &accessoryConfiguration.state,
-                                    sizeof accessoryConfiguration.state);
-  if (err) {
-    HAPAssert(err == kHAPError_Unknown);
-    HAPFatalError();
-  }
-}
+//   HAPError err;
+//   err = HAPPlatformKeyValueStoreSet(accessoryConfiguration.keyValueStore,
+//                                     kAppKeyValueStoreDomain_Configuration,
+//                                     kAppKeyValueStoreKey_Configuration_State,
+//                                     &accessoryConfiguration.state,
+//                                     sizeof accessoryConfiguration.state);
+//   if (err) {
+//     HAPAssert(err == kHAPError_Unknown);
+//     HAPFatalError();
+//   }
+// }
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -272,6 +272,8 @@ void AppInitialize(
 
     if (!bme) {
         HAPLogError(&kHAPLog_Default, "=== BME is NULL!");
+        mgos_gpio_set_mode(13, MGOS_GPIO_MODE_OUTPUT);
+        mgos_gpio_write(13, true);
     }
 
 }

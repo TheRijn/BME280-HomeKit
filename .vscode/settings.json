@@ -1,7 +1,16 @@
 {
-    "mos.port": "/dev/cu.UEMarijn-LWACP",
+    "mos.port": "",
     "mos.board": "ESP32",
     "cSpell.words": [
-        "mgos"
+        "adafruit",
+        "build",
+        "cdefs",
+        "conds",
+        "gpio",
+        "humiditysensor",
+        "huzzah",
+        "mgos",
+        "temperaturesensor",
+        "vars"
     ]
 }

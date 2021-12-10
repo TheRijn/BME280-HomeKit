@@ -1,8 +1,8 @@
-# Demo application for HomeKit ADK
+# BME280 Climate Sensor using HomeKit ADK
 
-This is a demo applicatio for the [HomeKit ADK library](https://github.com/mongoose-os-libs/homekit-adk).
+Based on the demo application for the [HomeKit ADK library](https://github.com/mongoose-os-libs/homekit-adk).
 
-It is based on the [original light bulb app](https://github.com/apple/HomeKitADK/tree/master/Applications/Lightbulb) with minimal changes.
+[HomeKit Accessory Protocol Specification ](https://developer.apple.com/homekit/specification/)
 
 ## Setup
 
@@ -18,3 +18,11 @@ null
  $ mos wifi MYSSID MYPASS
 ```
  * That's all! You should see "Acme Light Bulb 9000" appear in the list of accessories.
+
+## Update with
+
+    mos --port ws://<IP_ADDR>/rpc ota build/fw.zip
+    url -v -F file=@build/fw.zip http://<IP_ADDR>/update
+
+
+    mos --port ws://<IP_ADDR>/rpc call HAP.Setup '{"code": "111-22-333"}'
